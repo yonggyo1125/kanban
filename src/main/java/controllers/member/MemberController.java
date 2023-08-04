@@ -27,7 +27,7 @@ public class MemberController extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        router.route(req, "member");
+        router.route(req, resp, "member");
 
      }
 
