@@ -23,6 +23,6 @@
         - 작업목록 - /works
         - 작업등록 - /works/add
         - 작업수정 - /works/등록번호
-        - 작업삭제 - /works/등록번호/delete
+        - 작업삭제 - /works/delete/등록번호
     - 모델 구성
     - 뷰 구성
