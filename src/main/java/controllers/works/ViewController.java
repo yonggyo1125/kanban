@@ -5,11 +5,11 @@ import controllers.Controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ListController implements Controller {
+public class ViewController implements Controller {
     @Override
     public void get(HttpServletRequest req, HttpServletResponse resp) {
-        
-        ViewUtils.load(req, resp, "works", "list");
+
+        ViewUtils.load(req, resp, "works", "view");
     }
 
     @Override
