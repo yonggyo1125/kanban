@@ -55,7 +55,13 @@ public class WorkDao {
      */
     public Work get(long workNo) {
 
-        return null;
+        Work params = new Work();
+        params.setWorkNo(workNo);
+
+        SqlSession sqlSession = DBConnection.getSession();
+        Work work = sqlSession.selectOne("WorkListMapper.each", params);
+
+        return work;
     }
 
     /**
@@ -65,7 +71,10 @@ public class WorkDao {
      * @return
      */
     public List<Work> gets(Work work) {
+        SqlSession sqlSession = DBConnection.getSession();
 
-        return null;
+        List<Work> items = sqlSession.selectList("WorkListMapper.list", work);
+
+        return items;
     }
 }
