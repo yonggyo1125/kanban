@@ -1,5 +1,8 @@
 package models.works;
 
+import configs.DBConnection;
+import org.apache.ibatis.session.SqlSession;
+
 import java.util.List;
 
 public class WorkDao {
@@ -12,8 +15,18 @@ public class WorkDao {
      * @return
      */
     public boolean save(Work work) {
+        SqlSession sqlSession = DBConnection.getSession();
+        long workNo = work.getWorkNo();
+        int affectedRows = 0;
+        if (workNo > 0L) { // 수정
+            affectedRows = sqlSession.update("WorkListMapper.edit", work);
+        } else { // 추가
+            affectedRows = sqlSession.insert("WorkListMapper.add", work);
+        }
 
-        return false; // 임시 
+        sqlSession.commit();
+
+        return affectedRows > 0;
     }
 
     /**
