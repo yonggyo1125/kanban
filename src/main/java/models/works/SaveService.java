@@ -1,7 +1,11 @@
 package models.works;
 
 public class SaveService {
-    private WorkDao workDao = new UpgradedWorkDao();
+    private WorkDao workDao;
+
+    public SaveService(WorkDao workDao) {
+        this.workDao = workDao;
+    }
 
     public void save(Work work) {
 
