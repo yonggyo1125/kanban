@@ -31,4 +31,8 @@
              modDt=NOW()
         WHERE workNo=#{workNo}
     </update>
+
+    <delete id="delete" parameterType="models.works.Work">
+        DELETE FROM workList WHERE workNo=#{workNo}
+    </delete>
 </mapper>
