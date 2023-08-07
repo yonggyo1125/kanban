@@ -36,8 +36,15 @@ public class WorkDao {
      * @return
      */
     public boolean delete(long workNo) {
+        SqlSession sqlSession = DBConnection.getSession();
+        Work params = new Work();
+        params.setWorkNo(workNo);
 
-        return false; // 임시
+        int affectedRows = sqlSession.delete("WorkListMapper.delete", params);
+
+        sqlSession.commit();
+
+        return affectedRows > 0;
     }
 
     /**
