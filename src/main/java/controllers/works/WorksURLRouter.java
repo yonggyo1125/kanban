@@ -31,5 +31,12 @@ public class WorksURLRouter implements URLRouter {
         } else if (mode.equals("delete")) {
             controller = new DeleteController();
         }
+
+        String method = req.getMethod().toUpperCase(); // 요청 메서드
+        if (method.equals("POST")) {
+            controller.post(req, resp);
+        } else {
+            controller.get(req, resp);
+        }
     }
 }
