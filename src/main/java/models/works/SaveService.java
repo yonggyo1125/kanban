@@ -1,29 +1,43 @@
 package models.works;
 
+import jakarta.servlet.http.HttpServletRequest;
+import validators.Validator;
+
 public class SaveService {
     private WorkDao workDao;
+    private Validator<Work> validator;
 
-    public SaveService(WorkDao workDao) {
+    public SaveService(WorkDao workDao, Validator<Work> validator) {
         this.workDao = workDao;
+        this.validator = validator;
     }
 
 
     public void save(Work work) {
-        /** 필수 항목 검증 - status, subject, content */
-        if (work.getStatus() == null) {
-            throw new WorkValidationException("작업 상태를 선택하세요.");
-        }
-        String subject = work.getSubject();
-        if (subject == null || subject.isBlank()) {
-            throw new WorkValidationException("작업 제목을 입력하세요.");
-        }
 
-        String content = work.getContent();
-        if (content == null || content.isBlank()) {
-            throw new WorkValidationException("작업 내용을 입력하세요.");
+        // 유효성 검사
+        validator.check(work);
+
+        boolean result = workDao.save(work);
+        if (!result) { // 등록 실패
+            throw new WorkSaveException();
         }
-
-        workDao.save(work); // 의존
-
     }
+
+    public void save(HttpServletRequest req) {
+        Work work = new Work();
+        work.setSubject(req.getParameter("subject"));
+        work.setContent(req.getParameter("content"));
+
+        String status = req.getParameter("status");
+        work.setStatus(status == null || status.isBlank() ? Status.READY : Status.valueOf(status));
+
+        String workNo = req.getParameter("workNo");
+        if (workNo != null && !workNo.isBlank()) {
+            work.setWorkNo(Long.parseLong(workNo));
+        }
+
+        save(work);
+    }
+
 }
