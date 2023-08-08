@@ -14,12 +14,17 @@ public class WorkServiceManager {
     }
 
     public WorkDao workDao() {
+
         return new WorkDao();
     }
 
-    public SaveService saveService() {
+    public WorkSaveValidator workSaveValidator() {
 
-        return new SaveService(workDao());
+        return new WorkSaveValidator();
+    }
+
+    public SaveService saveService() {
+        return new SaveService(workDao(), workSaveValidator());
     }
 
     public InfoService infoService() {
