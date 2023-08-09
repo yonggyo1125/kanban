@@ -16,6 +16,7 @@ public class DeleteController implements Controller {
             InfoService infoService = WorkServiceManager.getInstance().infoService();
             long workNo = UrlUtils.getPatternData(req, "delete/(\\d*)");
 
+
         } catch (Exception e) {
             alertError(resp, e, -1);
         }
