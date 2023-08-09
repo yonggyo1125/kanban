@@ -1,5 +1,6 @@
 package controllers.works;
 
+import static commons.ScriptUtils.*;
 import commons.ViewUtils;
 import controllers.Controller;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,8 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.works.SaveService;
 import models.works.WorkServiceManager;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class SaveController implements Controller {
     @Override
@@ -29,11 +28,7 @@ public class SaveController implements Controller {
             saveService.save(req);
 
         } catch (Exception e) {
-            try {
-                resp.setContentType("text/html;charset=UTF-8");
-                PrintWriter out = resp.getWriter();
-                out.printf("<script>alert('%s');</script>", e.getMessage());
-            } catch (IOException e2) {}
+            alertError(resp, e);
             e.printStackTrace();
         }
     }
