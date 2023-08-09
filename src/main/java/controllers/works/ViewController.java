@@ -27,11 +27,11 @@ public class ViewController implements Controller {
 
             req.setAttribute("work", work);
 
+            ViewUtils.load(req, resp, "works", "view");
+
         } catch (Exception e) {
             alertError(resp, e, -1);
         }
-
-        ViewUtils.load(req, resp, "works", "view");
     }
 
     @Override
