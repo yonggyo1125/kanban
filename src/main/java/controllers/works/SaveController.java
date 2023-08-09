@@ -18,8 +18,10 @@ public class SaveController implements Controller {
         String URI = req.getRequestURI();
         String mode = URI.indexOf("edit") != -1 ? "edit" : "add";
 
-        long workNo = getWorkNo(req);
-        System.out.println(workNo);
+        if (mode.equals("edit")) {
+            long workNo = getWorkNo(req);
+
+        }
 
         String[] addScript = { "ckeditor/ckeditor", "work/form" };
         req.setAttribute("addScript", addScript);
