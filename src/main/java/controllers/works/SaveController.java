@@ -5,10 +5,7 @@ import commons.ViewUtils;
 import controllers.Controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.works.InfoService;
-import models.works.SaveService;
-import models.works.Work;
-import models.works.WorkServiceManager;
+import models.works.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,20 +18,25 @@ public class SaveController implements Controller {
             String URI = req.getRequestURI();
             String mode = URI.indexOf("edit") != -1 ? "edit" : "add";
 
-            if (mode.equals("edit")) {
+            Work work = null;
+            if (mode.equals("edit")) { // 수정
                 InfoService infoService = WorkServiceManager.getInstance().infoService();
-                Work work = infoService.get(getWorkNo(req));
+                work = infoService.get(getWorkNo(req));
                 if (work == null) {
-
+                    throw new WorkNotFoundException();
                 }
+            } else { // 추가 
+                work = new Work();
             }
+
+            req.setAttribute("work", work);
 
             String[] addScript = {"ckeditor/ckeditor", "work/form"};
             req.setAttribute("addScript", addScript);
 
             ViewUtils.load(req, resp, "works", mode);
         } catch (Exception e) {
-
+            alertError(resp, e, -1); // 에러 메세지 alert로 출력, history.go(-1);
         }
     }
 

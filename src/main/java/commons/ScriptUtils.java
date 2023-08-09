@@ -13,7 +13,7 @@ public class ScriptUtils {
             out.printf("<script>alert('%s');</script>", e.getMessage());
 
             if (goStep != 0) {
-                out.printf("<script>history.go(%d);<script>", goStep);
+                out.printf("<script>history.go(%d);</script>", goStep);
             }
 
         } catch (IOException e2) {}
