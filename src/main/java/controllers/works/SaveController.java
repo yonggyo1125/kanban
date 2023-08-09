@@ -27,6 +27,8 @@ public class SaveController implements Controller {
         try {
             saveService.save(req);
 
+            resp.sendRedirect(req.getContextPath() + "/works"); // Location: /kanban/works
+
         } catch (Exception e) {
             alertError(resp, e);
             e.printStackTrace();
