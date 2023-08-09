@@ -17,7 +17,10 @@
         ${work.content}
     </div>
     <div class="links">
-
+        <a href="${listUrl}">목록</a>
+        <a href="${editUrl}">수정</a>
+        <a href="${addUrl}">등록</a>
+        <a href="${deleteUrl}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
     </div>
 </section>
 
