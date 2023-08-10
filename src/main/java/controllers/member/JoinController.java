@@ -8,6 +8,7 @@ import models.member.JoinService;
 import models.member.MemberServiceManager;
 
 import static commons.ScriptUtils.alertError;
+import static commons.ScriptUtils.go;
 
 public class JoinController implements Controller {
     public void get(HttpServletRequest req, HttpServletResponse resp) {
@@ -20,6 +21,9 @@ public class JoinController implements Controller {
 
         try {
             joinService.join(req);
+            
+            // 회원가입 성공시 로그인 페이지로 이동
+            go(resp, req.getContextPath() + "/", "parent");
 
         } catch (Exception e) {
             alertError(resp, e);
