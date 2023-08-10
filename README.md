@@ -17,7 +17,7 @@
     - 컨트롤러 구성 
       - 회원쪽 컨트롤러 
         - 회원가입 - /member/join
-        - 로그인 - /member/login
+        - 로그인 - /member/login + /(메인)
         - 정보수정 - /member/info
       - 작업관리 컨트롤러
         - 작업목록 - /works
