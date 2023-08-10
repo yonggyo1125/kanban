@@ -10,6 +10,10 @@ body { margin: 0; }
 
 /* 사이트 기준 너비 */
 .layout_width { max-width: 1300px; min-width: 1000px; margin: 0 auto; padding: 0 10px; }
+section.contents { max-width: 1000px; background: #fff; box-shadow: 3px 3px 10px #ccc; padding: 0 20px; margin-top: 20px; border-radius: 15px; }
+
+/* 공통 배경 이미지 */
+html { background:url("../images/bg.png") no-repeat center top; background-size: 100%;  }
 
 /** 사이트 상단 공통 */
 header { background: #000; }
