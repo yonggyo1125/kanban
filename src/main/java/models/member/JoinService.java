@@ -10,6 +10,6 @@ public class JoinService {
     }
 
     public void join(Users users) {
-
+        validator.check(users);
     }
 }
