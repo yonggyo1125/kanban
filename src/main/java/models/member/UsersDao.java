@@ -28,6 +28,11 @@ public class UsersDao {
     }
 
     public boolean exists(String userId) {
+        SqlSession sqlSession = DBConnection.getSession();
+        Users params = new Users();
+        params.setUserId(userId);
+        int cnt = sqlSession.selectOne("UserMapper.exists", params);
 
+        return cnt > 0;
     }
 }
