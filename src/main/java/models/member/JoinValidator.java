@@ -31,5 +31,15 @@ public class JoinValidator implements Validator<UserForm>, RequiredValidator {
         checkRequired(userPwRe, new JoinValidationException("비밀번호를 확인하세요."));
         checkRequired(userNm, new JoinValidationException("회원명을 입력하세요."));
         checkRequired(email, new JoinValidationException("이메일을 입력하세요."));
+
+        // 2. 아이디 중복 여부
+        if (usersDao.exists(userId)) {
+            throw new JoinValidationException("이미 가입된 회원아이디 입니다.");
+        }
+
+        // 3. userPw(비밀번호), userPwRe(비밀번호 확인) 일치
+        if (!userPw.equals(userPwRe)) {
+            throw new JoinValidationException("비밀번호가 일치하지 않습니다.");
+        }
     }
 }
