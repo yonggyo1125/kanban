@@ -18,7 +18,7 @@ public class JoinController implements Controller {
 
     public void post(HttpServletRequest req, HttpServletResponse resp) {
         JoinService joinService = MemberServiceManager.getInstance().joinService();
-
+        System.out.println("여기?");
         try {
             joinService.join(req);
             
