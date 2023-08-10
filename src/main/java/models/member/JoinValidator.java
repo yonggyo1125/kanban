@@ -19,10 +19,17 @@ public class JoinValidator implements Validator<UserForm>, RequiredValidator {
          * 3. userPw(비밀번호), userPwRe(비밀번호 확인) 일치
          */
 
-        String userId = users.getUserId();
-        String userPw = users.getUserPw();
-        //String userPwRe = users.getU
-        // 1. 필수 항목 검증
+        String userId = userForm.getUserId();
+        String userPw = userForm.getUserPw();
+        String userPwRe = userForm.getUserPwRe();
+        String userNm = userForm.getUserNm();
+        String email = userForm.getEmail();
 
+        // 1. 필수 항목 검증
+        checkRequired(userId, new JoinValidationException("아이디를 입력하세요."));
+        checkRequired(userPw, new JoinValidationException("비밀번호를 입력하세요."));
+        checkRequired(userPwRe, new JoinValidationException("비밀번호를 확인하세요."));
+        checkRequired(userNm, new JoinValidationException("회원명을 입력하세요."));
+        checkRequired(email, new JoinValidationException("이메일을 입력하세요."));
     }
 }

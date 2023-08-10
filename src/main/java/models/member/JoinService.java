@@ -1,5 +1,7 @@
 package models.member;
 
+import controllers.member.UserForm;
+
 public class JoinService {
     private UsersDao usersDao;
     private JoinValidator validator;
@@ -9,7 +11,7 @@ public class JoinService {
         this.validator = validator;
     }
 
-    public void join(Users users) {
-        validator.check(users);
+    public void join(UserForm userForm) {
+        validator.check(userForm);
     }
 }
