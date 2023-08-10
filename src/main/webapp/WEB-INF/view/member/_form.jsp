@@ -23,3 +23,9 @@
         <input type="text" name="userNm">
     </dd>
 </dl>
+<dl>
+    <dt>휴대전화번호</dt>
+    <dd>
+        <input type="text" name="mobile">
+    </dd>
+</dl>
