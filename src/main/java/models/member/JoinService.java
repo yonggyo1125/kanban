@@ -12,6 +12,11 @@ public class JoinService {
     }
 
     public void join(UserForm userForm) {
+
+        // 유효성 검사
         validator.check(userForm);
+
+        // 유효성 검사 성공시 DB 처리
+        boolean result = usersDao.register(userForm);
     }
 }
