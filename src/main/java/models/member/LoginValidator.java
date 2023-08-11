@@ -1,6 +1,7 @@
 package models.member;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.mindrot.jbcrypt.BCrypt;
 import validators.RequiredValidator;
 import validators.Validator;
 
@@ -34,5 +35,9 @@ public class LoginValidator implements Validator<HttpServletRequest>, RequiredVa
         if (users == null) {
             throw new LoginValidationException(message);
         }
+
+        // 3. 비밀번호 검증
+        boolean match = BCrypt.checkpw(userPw, users.getUserPw());
+        checkTrue(match, new LoginValidationException(message));
     }
 }
