@@ -1,11 +1,12 @@
 package models.member;
 
 import controllers.member.UserForm;
+import validators.MobileValidator;
 import validators.PasswordValidator;
 import validators.RequiredValidator;
 import validators.Validator;
 
-public class JoinValidator implements Validator<UserForm>, RequiredValidator, PasswordValidator {
+public class JoinValidator implements Validator<UserForm>, RequiredValidator, PasswordValidator, MobileValidator {
     private UsersDao usersDao;
 
     public JoinValidator(UsersDao usersDao) {
@@ -29,6 +30,7 @@ public class JoinValidator implements Validator<UserForm>, RequiredValidator, Pa
         String userPwRe = userForm.getUserPwRe();
         String userNm = userForm.getUserNm();
         String email = userForm.getEmail();
+        String mobile = userForm.getMobile();
 
         // 1. 필수 항목 검증
         checkRequired(userId, new JoinValidationException("아이디를 입력하세요."));
@@ -56,7 +58,14 @@ public class JoinValidator implements Validator<UserForm>, RequiredValidator, Pa
             throw new JoinValidationException("비밀번호가 일치하지 않습니다.");
         }
         // 5. 비밀번호 복잡성 체크
-        checkTrue(passwordCheck(userPw,3), new JoinValidationException("비밀번호는 대소문자 각각1개 이상, 숫자 1개 이상, 특수문자를 포함해서 입력하세요."));
+       // checkTrue(passwordCheck(userPw,2), new JoinValidationException("비밀번호는 대소문자 각각1개 이상, 숫자 1개 이상, 특수문자를 포함해서 입력하세요."));
+
+        // 6. 휴대폰번호 유효성 검사
+        if (mobile != null && !mobile.isBlank()) {
+            mobile = mobile.replaceAll("\\D", "");
+            checkTrue(mobileCheck(mobile), new JoinValidationException("휴대전화번호 형식 아닙니다."));
+            userForm.setMobile(mobile);
+        }
 
         // 7. 회원 가입 약관 동의 여부
         checkTrue(userForm.isAgree(), new JoinValidationException("약관에 동의해 주세요."));
