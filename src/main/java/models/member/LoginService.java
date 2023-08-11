@@ -13,6 +13,6 @@ public class LoginService {
     }
 
     public void login(HttpServletRequest request) {
-
+        validator.check(request);
     }
 }
