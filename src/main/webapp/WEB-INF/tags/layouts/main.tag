@@ -29,10 +29,12 @@
                     </a>
                 </c:if>
                 <c:if test="${sessionScope.users != null}">
-                    <fmt:message key="LOGIN.MESSAGE">
-                        <fmt:param>${sessionScope.users.userNm}</fmt:param>
-                        <fmt:param>${sessionScope.users.userId}</fmt:param>
-                    </fmt:message>
+                    <span class="userinfo">
+                        <fmt:message key="LOGIN.MESSAGE">
+                            <fmt:param>${sessionScope.users.userNm}</fmt:param>
+                            <fmt:param>${sessionScope.users.userId}</fmt:param>
+                        </fmt:message>
+                    </span>
                     <a href="${workListUrl}">
                         <i class="xi-list"></i> 작업목록
                     </a>
