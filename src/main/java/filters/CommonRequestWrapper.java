@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.member.Users;
 
+import java.io.IOException;
+
 public class CommonRequestWrapper extends HttpServletRequestWrapper {
 
     public CommonRequestWrapper(HttpServletRequest request, HttpServletResponse response) {
@@ -42,7 +44,11 @@ public class CommonRequestWrapper extends HttpServletRequestWrapper {
             }
         }
 
-
+        if (!isAccessible) { // 접근 권한 없음
+            try {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "접근 권한이 없습니다.");
+            } catch (IOException e) {}
+        }
     }
 
     // 회원전용 URL
