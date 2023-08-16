@@ -2,6 +2,7 @@ package controllers.works;
 
 import static commons.ScriptUtils.*;
 
+import commons.MemberUtil;
 import commons.UrlUtils;
 import commons.ViewUtils;
 import controllers.Controller;
@@ -28,6 +29,9 @@ public class SaveController implements Controller {
                 if (work == null) {
                     throw new WorkNotFoundException();
                 }
+
+                MemberUtil.isMine(req, work.getUserNo());
+
             } else { // 추가 
                 work = new Work();
             }
