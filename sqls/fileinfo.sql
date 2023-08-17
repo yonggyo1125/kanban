@@ -1,0 +1,8 @@
+CREATE TABLE fileinfo (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    gid VARCHAR(45) NOT NULL,
+    location VARCHAR(45),
+    fileName VARCHAR(100) NOT NULL,
+    fileType VARCHAR(80),
+    regDt DATETIME DEFAULT NOW()
+);
