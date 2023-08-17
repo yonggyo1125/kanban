@@ -1,6 +1,19 @@
 package models.files;
 
 public class FileServiceManager {
+
+    private static FileServiceManager instance;
+
+    private FileServiceManager() {}
+
+    public static FileServiceManager getInstance() {
+        if (instance == null) {
+            instance = new FileServiceManager();
+        }
+
+        return instance;
+    }
+
     public FileInfoDao fileInfoDao() {
         return new FileInfoDao();
     }
