@@ -60,8 +60,12 @@ public class FileUploadService {
                 fileInfo.setExtension(extension);
                 fileInfo.setUserNo(userNo);
 
-                if (!fileInfoDao.add(fileInfo)) { // 파일 정보 저장 실패
-                    long id = fileInfo.getId();
+                System.out.println("파일 저장 전!");
+                fileInfoDao.add(fileInfo);
+                long id = fileInfo.getId();
+                if (id > 0L) { // 파일 정보 저장 실패
+                    System.out.println("파일 저장 완료!");
+                    System.out.println(fileInfo);
 
                     File dir = new File(uploadPath + "/" + (id % 10));
                     if (!dir.exists()) { // 디렉토리가 없는 경우
