@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FileInfoMapper">
+    <resultMap id="fileInfoMap" type="models.files.FileInfo">
+        <result column="id" property="id" />
+        <result column="gid" property="gid" />
+        <result column="location" property="location" />
+        <result column="fileName" property="fileName" />
+        <result column="location" property="location" />
+        <result column="fileType" property="fileType" />
+        <result column="regDt" property="regDt" />
+    </resultMap>
+    <select id="each" parameterType="models.files.FileInfo" resultMap="fileInfoMap">
+        SELECT * FROM
+    </select>
+</mapper>
